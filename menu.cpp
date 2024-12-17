@@ -3,8 +3,7 @@
 using namespace std;
 
 // Variabel global
-int n;
-int data[100];
+int data[100]; // Array data tanpa n global lagi
 
 // Fungsi tukar
 void tukar(int *a, int *b) {
@@ -14,10 +13,10 @@ void tukar(int *a, int *b) {
 }
 
 // Fungsi untuk input data
-void masukkanData() {
+void masukkanData(int& n) {  // n sekarang parameter yang diteruskan
     system("cls");
     cout << "Masukkan jumlah data: ";
-    cin >> n;
+    cin >> n;  // Assign jumlah data ke n
     for (int i = 0; i < n; i++) {
         cout << "Masukkan data ke-" << i + 1 << ": ";
         cin >> data[i];
@@ -27,7 +26,7 @@ void masukkanData() {
 }
 
 // Fungsi untuk menampilkan data
-void tampilkanData() {
+void tampilkanData(int n) {  // n sekarang parameter yang diteruskan
     system("cls");
     cout << "Data: ";
     for (int i = 0; i < n; i++) {
@@ -38,7 +37,7 @@ void tampilkanData() {
 }
 
 // Fungsi sorting ascending
-void sortingAsc() {
+void sortingAsc(int n) {  // n sekarang parameter yang diteruskan
     for (int i = 0; i < n - 1; i++) {
         for (int j = 0; j < n - i - 1; j++) {
             if (data[j] > data[j + 1]) {
@@ -51,7 +50,7 @@ void sortingAsc() {
 }
 
 // Fungsi sorting descending
-void sortingDsc() {
+void sortingDsc(int n) {  // n sekarang parameter yang diteruskan
     for (int i = 0; i < n - 1; i++) {
         for (int j = 0; j < n - i - 1; j++) {
             if (data[j] < data[j + 1]) {
@@ -76,22 +75,23 @@ void dMenu() {
 }
 
 int main() {
+    int n;  // Variabel n dideklarasikan di sini secara lokal
     char pl;
     do {
         dMenu();
         pl = getch();
         switch (pl) {
         case '1':
-            masukkanData();
+            masukkanData(n);  // Pass n sebagai parameter ke masukkanData()
             break;
         case '2':
-            tampilkanData();
+            tampilkanData(n);  // Pass n ke tampilkanData()
             break;
         case '3':
-            sortingAsc();
+            sortingAsc(n);  // Pass n ke sortingAsc()
             break;
         case '4':
-            sortingDsc();
+            sortingDsc(n);  // Pass n ke sortingDsc()
             break;
         case '5':
             break;
@@ -104,5 +104,3 @@ int main() {
     } while (pl != '5');
     return 0;
 }
-
-
